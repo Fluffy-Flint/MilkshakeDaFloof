@@ -4,7 +4,7 @@ I’m interested in modeling engines
 
 I’m currently learning how to code e2s and make the best gmod loco dupes
 
-I’m looking to collaborate on any loco with a sloped boiler
+I’m looking to collaborate on any loco with a tilted boiler
 
 How to reach me:
 Youtube: https://www.youtube.com/channel/UCgstxWHuS422ESjJk4Dk3pA
