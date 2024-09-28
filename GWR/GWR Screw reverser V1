@@ -1,0 +1,146 @@
+@name GWR Reverser V1
+@inputs Reverser
+@persist B L P2M1:entity P2M2:entity P2M3:entity P2M4:entity
+
+    Base = entity()
+    
+if( first() | duped() ){
+#parent
+holoCreate(0)
+holoModel(0,"")
+holoScale(0,vec(0))
+holoAng(0, entity():toWorld(ang(0,0,0)))
+holoMaterial(0,"")
+holoParent(0, entity())
+
+    BrakeA=holoEntity(0)
+    P2MID = 1 #The index number of the P2M controller, just like holo indexing.
+    P2M1 = p2mCreate(P2MID,
+    BrakeA:toWorld(vec(0,0,0)),  #Position of controller.
+    BrakeA:toWorld(ang(0)))  #Angle
+    P2M1:p2mPushModel(1,"models/sprops/cylinders/size_1/cylinder_1_5x30.mdl",vec(-11,0,0),ang(90,0,0),vec(1,1,0.75))  
+    P2M1:p2mPushModel(1,"models/sprops/trans/misc/coil.mdl",vec(-20,0,0),ang(90,0,0),vec(0.4,0.4,0.75),0,0,1) 
+    P2M1:p2mPushModel(1,"models/sprops/misc/fittings/cred_9_6_tall.mdl",vec(1.2,0,6.3),ang(-90,0,0),vec(0.1,0.1,0.15))   
+    P2M1:p2mPushModel(1,"models/sprops/misc/fittings/cred_9_6_tall.mdl",vec(1.2,0,-6.3),ang(-90,0,0),vec(0.1,0.1,0.15))     
+    P2M1:p2mPushModel(1,"models/sprops/geometry/sphere_9.mdl",vec(2.1,0,6.3),ang(-90,0,0),vec(0.1,0.1,0.1))   
+    P2M1:p2mPushModel(1,"models/sprops/geometry/sphere_9.mdl",vec(2.1,0,-6.3),ang(-90,0,0),vec(0.1,0.1,0.1))          
+    P2M1:p2mBuild() #Builds the mesh.    
+    P2M1:p2mSetUV(P2MID,28)                         #How big the UV (texture) is, 48 is a good number.
+    P2M1:p2mSetMaterial(P2MID,"models/proppertextures/acrylic_grey") #Material of the controller.
+    P2M1:p2mSetColor(P2MID,vec(255,255,255))        #Color of the controller.
+    P2M1:parentTo(BrakeA)                             #Where the controller gets parented to.
+
+    BrakeB=holoEntity(0)
+    P2MID = 2 #The index number of the P2M controller, just like holo indexing.
+    P2M2 = p2mCreate(P2MID,
+    BrakeB:toWorld(vec(0,0,0)),  #Position of controller.
+    BrakeB:toWorld(ang(0)))  #Angle  
+    P2M2:p2mPushModel(2,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(-2,0,0),ang(90,0,0),vec(0.9,0.9,0.2))            
+    P2M2:p2mPushModel(2,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(-0.2,0,0),ang(90,0,0),vec(0.9,0.9,0.2))     
+    P2M2:p2mPushModel(2,"models/sprops/cylinders/size_3/cylinder_6x3.mdl",vec(0,0,0),ang(90,0,0),vec(1,1,0.2))
+    P2M2:p2mPushModel(2,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0.3,0,0),ang(90,0,0),vec(1,1,0.2))     
+    P2M2:p2mPushModel(2,"models/sprops/geometry/t_fhex_12.mdl",vec(0.65,0,0),ang(0,90,0),vec(0.2)) 
+    P2M2:p2mPushModel(2,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0.7,0,0),ang(90,0,0),vec(0.5,0.5,0.2))  
+    P2M2:p2mPushModel(2,"models/sprops/rectangles_thin/size_1/rect_3x42x1_5.mdl",vec(0.4,0,0),ang(90,0,0),vec(0.3,0.3,0.2))                    
+    P2M2:p2mPushModel(2,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0.4,0,6.3),ang(90,0,0),vec(0.4,0.4,0.1))           
+    P2M2:p2mPushModel(2,"models/sprops/cylinders/size_2/cylinder_3x3.mdl",vec(0.4,0,-6.3),ang(90,0,0),vec(0.4,0.4,0.1))           
+    P2M2:p2mBuild() #Builds the mesh.    
+    P2M2:p2mSetUV(P2MID,28)                         #How big the UV (texture) is, 48 is a good number.
+    P2M2:p2mSetMaterial(P2MID,"models/proppertextures/acrylic_grimey") #Material of the controller.
+    P2M2:p2mSetColor(P2MID,vec(120,10,15))        #Color of the controller.
+    P2M2:parentTo(BrakeB)                             #Where the controller gets parented to.
+
+holoCreate(1)
+holoModel(1,"models/props_c17/playgroundTick-tack-toe_block01a.mdl")
+holoScale(1,vec(0.175))
+holoAng(1, entity():toWorld(ang(0,0,0)))
+holoMaterial(1,"models/proppertextures/acrylic_grey")
+holoParent(1, entity())
+
+holoCreate(2)
+holoModel(2,"")
+holoScale(2,vec(0))
+holoAng(2, entity():toWorld(ang(0,0,0)))
+holoMaterial(2,"")
+holoParent(2, entity())
+
+    BrakeC=holoEntity(2)
+    P2MID = 3 #The index number of the P2M controller, just like holo indexing.
+    P2M3 = p2mCreate(P2MID,
+    BrakeC:toWorld(vec(0,0,0)),  #Position of controller.
+    BrakeC:toWorld(ang(0)))  #Angle
+    P2M3:p2mPushModel(3,"models/sprops/cuboids/height12/size_2/cube_24x18x12.mdl",vec(-21.05,0,-12.3),ang(90,0,90),vec(1.2,1.2,1.5))               
+    P2M3:p2mPushModel(3,"models/sprops/cuboids/height06/size_2/cube_12x18x6.mdl",vec(-5,0,-12.6),ang(97,0,0),vec(1.2,1.5,1))
+    P2M3:p2mPushModel(3,"models/sprops/rectangles/size_1/rect_3x18x3.mdl",vec(-1.5,-5,-11.2),ang(97,0,0),vec(1,2.75,0.75))    
+    P2M3:p2mPushModel(3,"models/sprops/rectangles/size_1/rect_3x18x3.mdl",vec(-1.5,5,-11.2),ang(97,0,0),vec(1,2.75,0.75))            
+    P2M3:p2mPushModel(3,"models/sprops/cuboids/height12/size_2/cube_24x18x12.mdl",vec(-19.4,0,-28.75),ang(90,0,90),vec(1,1.5,1.5)) 
+    P2M3:p2mPushModel(3,"models/sprops/rectangles/size_1/rect_3x6x3.mdl",vec(-0.54,0,-3.4),ang(0,90,7),vec(0.75)) 
+    P2M3:p2mPushModel(3,"models/sprops/rectangles/size_1/rect_3x6x3.mdl",vec(-2.4,0,-18.5),ang(0,90,7),vec(0.75)) 
+    P2M3:p2mBuild() #Builds the mesh.    
+    P2M3:p2mSetUV(P2MID,28)                         #How big the UV (texture) is, 48 is a good number.
+    P2M3:p2mSetMaterial(P2MID,"models/proppertextures/acrylic_grimey") #Material of the controller.
+    P2M3:p2mSetColor(P2MID,vec(1,46,2))        #Color of the controller.
+    P2M3:parentTo(BrakeC)                             #Where the controller gets parented to.
+
+    BrakeD=holoEntity(2)
+    P2MID = 4 #The index number of the P2M controller, just like holo indexing.
+    P2M4 = p2mCreate(P2MID,
+    BrakeD:toWorld(vec(0,0,0)),  #Position of controller.
+    BrakeD:toWorld(ang(0)))  #Angle
+    P2M4:p2mPushModel(4,"models/sprops/misc/alphanum/alphanum_0.mdl",vec(-0.4,1.5,-11.2),ang(180,-90,7),vec(0.05)) 
+
+    P2M4:p2mPushModel(4,"models/sprops/misc/alphanum/alphanum_0.mdl",vec(0.15,1.5,-6.75),ang(180,-90,7),vec(0.05)) 
+    P2M4:p2mPushModel(4,"models/sprops/misc/alphanum/alphanum_0.mdl",vec(0.15,2,-6.75),ang(180,-90,7),vec(0.05)) 
+    P2M4:p2mPushModel(4,"models/sprops/misc/alphanum/alphanum_1.mdl",vec(0.15,2.45,-6.75),ang(180,-90,7),vec(0.05)) 
+
+    P2M4:p2mPushModel(4,"models/sprops/misc/alphanum/alphanum_7.mdl",vec(0,-1.5,-7.95),ang(180,-90,7),vec(0.05)) 
+    P2M4:p2mPushModel(4,"models/sprops/misc/alphanum/alphanum_5.mdl",vec(0,-2,-7.95),ang(180,-90,7),vec(0.05)) 
+
+    P2M4:p2mPushModel(4,"models/sprops/misc/alphanum/alphanum_0.mdl",vec(-0.1,1.5,-8.8),ang(180,-90,7),vec(0.05)) 
+    P2M4:p2mPushModel(4,"models/sprops/misc/alphanum/alphanum_5.mdl",vec(-0.1,2,-8.8),ang(180,-90,7),vec(0.05)) 
+
+    P2M4:p2mPushModel(4,"models/sprops/misc/alphanum/alphanum_2.mdl",vec(-0.25,-1.5,-10),ang(180,-90,7),vec(0.05)) 
+    P2M4:p2mPushModel(4,"models/sprops/misc/alphanum/alphanum_5.mdl",vec(-0.25,-2,-10),ang(180,-90,7),vec(0.05)) 
+
+    P2M4:p2mPushModel(4,"models/sprops/misc/alphanum/alphanum_2.mdl",vec(-0.5,-1.5,-12.2),ang(180,-90,7),vec(0.05)) 
+    P2M4:p2mPushModel(4,"models/sprops/misc/alphanum/alphanum_5.mdl",vec(-0.5,-2,-12.2),ang(180,-90,7),vec(0.05)) 
+
+    P2M4:p2mPushModel(4,"models/sprops/misc/alphanum/alphanum_0.mdl",vec(-0.675,1.5,-13.3),ang(180,-90,7),vec(0.05)) 
+    P2M4:p2mPushModel(4,"models/sprops/misc/alphanum/alphanum_5.mdl",vec(-0.675,2,-13.3),ang(180,-90,7),vec(0.05)) 
+    
+    P2M4:p2mPushModel(4,"models/sprops/misc/alphanum/alphanum_7.mdl",vec(-0.75,-1.5,-14.3),ang(180,-90,7),vec(0.05)) 
+    P2M4:p2mPushModel(4,"models/sprops/misc/alphanum/alphanum_5.mdl",vec(-0.75,-2,-14.3),ang(180,-90,7),vec(0.05))     
+    
+    P2M4:p2mPushModel(4,"models/sprops/misc/alphanum/alphanum_0.mdl",vec(-0.875,1.5,-15.5),ang(180,-90,7),vec(0.05)) 
+    P2M4:p2mPushModel(4,"models/sprops/misc/alphanum/alphanum_0.mdl",vec(-0.875,2,-15.5),ang(180,-90,7),vec(0.05)) 
+    P2M4:p2mPushModel(4,"models/sprops/misc/alphanum/alphanum_1.mdl",vec(-0.875,2.45,-15.5),ang(180,-90,7),vec(0.05)) 
+    
+    P2M4:p2mPushModel(4,"models/sprops/rectangles/size_1/rect_3x18x3.mdl",vec(-0.7,0.7,-11.2),ang(97,0,0),vec(0.75,0.25,0.25)) 
+    P2M4:p2mPushModel(4,"models/sprops/rectangles/size_1/rect_3x18x3.mdl",vec(-0.7,-0.7,-11.2),ang(97,0,0),vec(0.75,0.25,0.25)) 
+    P2M4:p2mBuild() #Builds the mesh.    
+    P2M4:p2mSetUV(P2MID,28)                         #How big the UV (texture) is, 48 is a good number.
+    P2M4:p2mSetMaterial(P2MID,"models/proppertextures/acrylic_lightgrey") #Material of the controller.
+    P2M4:p2mSetColor(P2MID,vec(1,46,2))        #Color of the controller.
+    P2M4:parentTo(BrakeD)                             #Where the controller gets parented to.
+
+
+}
+interval(100)
+if(Reverser > 0){
+A=Reverser*-720
+}
+else{
+A=Reverser*-720
+}
+ 
+holoAng(0, entity():toWorld(ang(-83,0,A)))
+holoPos(1, entity():toWorld(vec(-1.2-(A*0.00075),0,-11+Reverser*4.3)))
+holoAng(1, entity():toWorld(ang(-83,0,0)))
+# 2.3 / 3.3 / 4.4
+    if(Reverser & ~Reverser)
+    {
+        
+        soundPlay(1,0,"player/footsteps/metalgrate1.wav") 
+        soundPitch(1,120)
+        soundVolume(1,0.15)  
+		      }
