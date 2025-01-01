@@ -1,0 +1,124 @@
+@name Nameplate 2.2
+@persist N [Text Mat]:string Length Height Thickness H_Scale Font Color:vector Scale LE E:entity P:vector U:vector F:vector R:vector A:angle AR:array C AUTOPARENT
+@model models/sprops/rectangles_thin/size_1_5/rect_6x6x1_5.mdl
+if(first()|duped()){
+#[
+Welcome to Magnum's HoloText E2!
+This e2 can create hologram text that can have any material or color and can be scaled to fit a certain area.
+Edited nameplate by Milky
+]#
+
+#The Text. This is what the sign will display. All alphabetical and numerical characters are accepted as well as ! ? . ' $ / * ^ : - ,
+
+Text = "AJAX"
+
+AUTOPARENT = 1
+#If this is enabled, the e2 will automatically parent itself to whatever you attach it to. It will also become invisible. Do not use if placing the e2 on the world.
+
+    Length = 24
+    Height = 7.5
+    Thickness = 1.5
+    H_Scale = 12
+    
+Font = 0
+#sprops/textures/sprops_metal5
+#models/props_gulch/gulch_crystal_white
+#wtp/metal_2b
+Mat = "models/proppertextures/brass"
+Color = vec(255,191,0)
+
+E = entity()
+P = E:pos()
+U = E:up()
+F = E:forward()
+R = E:right()
+A = E:angles():rotateAroundAxis(F,90):rotateAroundAxis(U,-90)
+
+AR = Text:explode("")
+C = AR:count()
+
+LE = C*H_Scale
+
+Scale = (Length-1)/LE
+N = 1
+timer("CLK",100)
+}
+if(clk("CLK")){
+    Ch = AR[N,string]
+    if(Font==3){Ch = Ch:upper()}
+    if("abcdefghijklmnopqrstuvwxyz":find(Ch)){
+        Char = "models/sprops/misc/alphanum/alphanum_l_"+Ch+".mdl"
+    }elseif("ABCDEFGHIJKLMNOPQRSTUVWX80YZ1234567890":find(Ch)){
+        Char = "models/sprops/misc/alphanum/alphanum_"+Ch+".mdl"
+    }elseif(Ch=="&"){
+        Char = "models/sprops/misc/alphanum/alphanum_and.mdl"
+    }elseif(Ch=="."){
+        Char = "models/sprops/misc/alphanum/alphanum_prd.mdl"
+    }elseif(Ch=="$"){
+        Char = "models/sprops/misc/alphanum/alphanum_dlsign.mdl"
+    }elseif(Ch=="*"){
+        Char = "models/sprops/misc/alphanum/alphanum_star_4.mdl"
+    }elseif(Ch=="^"){
+        Char = "models/sprops/misc/alphanum/alphanum_arrow_a.mdl"
+    }elseif(Ch=="/"){
+        Char = "models/sprops/misc/alphanum/alphanum_div.mdl"
+    }elseif(Ch=="!"){
+        Char = "models/sprops/misc/alphanum/alphanum_xmark.mdl"
+    }elseif(Ch=="?"){
+        Char = "models/sprops/misc/alphanum/alphanum_qmark.mdl"
+    }elseif(Ch=="'"){
+        Char = "models/sprops/misc/alphanum/alphanum_apost.mdl"
+    }elseif(Ch==":"){
+        Char = "models/sprops/misc/alphanum/alphanum_colon.mdl"
+    }elseif(Ch=="-"){
+        Char = "models/sprops/misc/alphanum/alphanum_min.mdl"
+    }elseif(Ch==","){
+        Char = "models/sprops/misc/alphanum/alphanum_com.mdl"
+    }
+    
+    if(Ch!=" "){
+        holoCreate(N,P + Length*R/2 -(N-0.4)*Scale*R*H_Scale,vec(Scale,Thickness/3,Height/18),A,Color,Char)
+        holoParent(N,E)
+        holoMaterial(N,Mat)
+        
+    }
+    N++
+    if(N<=C){
+        timer("CLK",100)
+    }elseif(N>C){
+        timer("FINAL",500)
+    }
+}
+if(clk("FINAL")){
+    for(N=1,C){
+        holoBodygroup(N,0,Font)
+    }
+    if(AUTOPARENT){
+        E:setMaterial("")
+        if(E:isWeldedTo():isValid()){
+            E:parentTo(E:isWeldedTo())
+            #ifdef entity:constraintBreak(entity)
+                E:constraintBreak(E:isWeldedTo())
+            #endif
+                
+        }
+    }
+}
+holoCreate(80)
+holoPos(80,entity():toWorld(vec(0,0,-0.4)))
+holoParent(80, entity())
+holoModel(80, "models/sprops/rectangles_thin/size_1_5/rect_6x6x1_5.mdl")
+holoAng(80, entity():toWorld(ang(0,90,0)) )
+holoScale(80, vec( Length/6, Height/6 , 1))
+holoMaterial(80,"models/proppertextures/brass")
+holoColor(80, vec(127,0,0))
+
+holoCreate(90)
+holoPos(90,entity():toWorld(vec(0,0,0)))
+holoParent(90, entity())
+holoModel(90, "models/sprops/rectangles_thin/size_1_5/rect_6x6x1_5.mdl")
+holoAng(90, entity():toWorld(ang(0,90,0)) )
+holoScale(90, vec( (Length-0.5)/6, (Height-0.5)/6 , 0.6))
+holoMaterial(90,"models/proppertextures/acrylic_worn")
+holoColor(90, vec(36))
+
